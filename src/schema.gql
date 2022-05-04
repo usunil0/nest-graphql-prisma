@@ -8,15 +8,45 @@ type User {
   name: String
 }
 
+type Aiport {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Plane {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Ticket {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
+  aiports: [Aiport!]!
+  aiport(id: Int!): Aiport!
+  planes: [Plane!]!
+  plane(id: Int!): Plane!
+  tickets: [Ticket!]!
+  ticket(id: Int!): Ticket!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createAiport(createAiportInput: CreateAiportInput!): Aiport!
+  updateAiport(updateAiportInput: UpdateAiportInput!): Aiport!
+  removeAiport(id: Int!): Aiport!
+  createPlane(createPlaneInput: CreatePlaneInput!): Plane!
+  updatePlane(updatePlaneInput: UpdatePlaneInput!): Plane!
+  removePlane(id: Int!): Plane!
+  createTicket(createTicketInput: CreateTicketInput!): Ticket!
+  updateTicket(updateTicketInput: UpdateTicketInput!): Ticket!
+  removeTicket(id: Int!): Ticket!
 }
 
 input CreateUserInput {
@@ -27,5 +57,38 @@ input CreateUserInput {
 input UpdateUserInput {
   email: String
   name: String
+  id: Int!
+}
+
+input CreateAiportInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAiportInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePlaneInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePlaneInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateTicketInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTicketInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }

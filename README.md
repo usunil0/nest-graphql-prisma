@@ -131,3 +131,11 @@ query Tickets{
   }
 }
 ```
+
+```
+mutation PlaneTicket($price:Int!,$plane:Int!,$user:Int!){
+  createTicket(createTicketInput:{price:$price,planeId:$plane,userId:$user}){
+    id
+  }
+}
+```

@@ -1,26 +1,58 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTicketInput } from './dto/create-ticket.input';
-import { UpdateTicketInput } from './dto/update-ticket.input';
+import { PrismaService } from 'src/prisma.service';
+import { PlaneTicket, Prisma } from '@prisma/client';
 
 @Injectable()
-export class TicketsService {
-  create(createTicketInput: CreateTicketInput) {
-    return 'This action adds a new ticket';
+export class PlaneTicketService {
+  constructor(private prisma: PrismaService) {}
+
+  async plane(
+    planeWhereUniqueInput: Prisma.PlaneWhereUniqueInput,
+  ): Promise<PlaneTicket | null> {
+    return this.prisma.planeTicket.findUnique({
+      where: planeWhereUniqueInput,
+    });
   }
 
-  findAll() {
-    return `This action returns all tickets`;
+  async planes(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.PlaneWhereUniqueInput;
+    where?: Prisma.PlaneWhereInput;
+    orderBy?: Prisma.PlaneOrderByWithRelationInput;
+  }): Promise<PlaneTicket[]> {
+    const { skip, take, cursor, where, orderBy } = params;
+    return this.prisma.planeTicket.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
+  async createPlane(data: Prisma.PlaneTicketCreateInput): Promise<PlaneTicket> {
+    return this.prisma.planeTicket.create({
+      data,
+    });
   }
 
-  update(id: number, updateTicketInput: UpdateTicketInput) {
-    return `This action updates a #${id} ticket`;
+  async updatePlane(params: {
+    where: Prisma.PlaneTicketWhereUniqueInput;
+    data: Prisma.PlaneTicketUpdateInput;
+  }): Promise<PlaneTicket> {
+    const { where, data } = params;
+    return this.prisma.planeTicket.update({
+      data,
+      where,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ticket`;
+  async deletePlane(
+    where: Prisma.AirportWhereUniqueInput,
+  ): Promise<PlaneTicket> {
+    return this.prisma.planeTicket.delete({
+      where,
+    });
   }
 }

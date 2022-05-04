@@ -4,7 +4,7 @@ import { UsersModule } from './users/users.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AiportsModule } from './aiports/aiports.module';
+import { AirportsModule } from './airports/airports.module';
 import { PlanesModule } from './planes/planes.module';
 import { TicketsModule } from './tickets/tickets.module';
 
@@ -16,7 +16,7 @@ import { TicketsModule } from './tickets/tickets.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
     }),
-    AiportsModule,
+    AirportsModule,
     PlanesModule,
     TicketsModule,
   ],

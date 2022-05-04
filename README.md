@@ -58,3 +58,27 @@ mutation RemoveUser($id:Int!){
   }
 }
 ```
+
+Airports
+
+```
+query airports{
+  airports{
+    id
+    name
+  }
+}
+```
+
+```
+mutation CreateAirport($name:String!){
+  createAirport(createAirportInput:{name:$name}){
+    id
+    name
+  }
+}
+```
+
+Planes
+
+Tickets

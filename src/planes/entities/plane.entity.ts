@@ -1,5 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
+import { Airport } from 'src/airports/entities/airport.entity';
+
 @ObjectType()
 export class Plane {
   @Field(() => Int)
@@ -8,15 +10,15 @@ export class Plane {
   @Field(() => String)
   name: string;
 
-  @Field(() => Int)
-  arrivalAirportId: number;
+  @Field(() => Airport)
+  arrivalAirport: Airport;
+
+  @Field(() => Airport)
+  departureAirport: Airport;
 
   @Field(() => Int)
-  departureAirportId: number;
+  arrivalTime: number;
 
-  @Field(() => Date)
-  arrivalTime: Date;
-
-  @Field(() => Date)
-  departureTime: Date;
+  @Field(() => Int)
+  departureTime: number;
 }

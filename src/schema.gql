@@ -14,13 +14,19 @@ type Airport {
 }
 
 type Plane {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  name: String!
+  arrivalAirport: Airport!
+  departureAirport: Airport!
+  arrivalTime: Int!
+  departureTime: Int!
 }
 
 type Ticket {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  price: Int!
+  planeId: Int!
+  userId: Int!
 }
 
 type Query {
@@ -42,11 +48,9 @@ type Mutation {
   updateAirport(updateAirportInput: UpdateAirportInput!): Airport!
   deleteAirport(id: Int!): Airport!
   createPlane(createPlaneInput: CreatePlaneInput!): Plane!
-  updatePlane(updatePlaneInput: UpdatePlaneInput!): Plane!
-  removePlane(id: Int!): Plane!
+  updatePlane(updateTicketInput: UpdateTicketInput!): Ticket!
+  deletePlane(id: Int!): Ticket!
   createTicket(createTicketInput: CreateTicketInput!): Ticket!
-  updateTicket(updateTicketInput: UpdateTicketInput!): Ticket!
-  removeTicket(id: Int!): Ticket!
 }
 
 input CreateUserInput {
@@ -70,23 +74,22 @@ input UpdateAirportInput {
 }
 
 input CreatePlaneInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  arrivalAirportId: Int!
+  departureAirportId: Int!
+  arrivalTime: Int!
+  departureTime: Int!
 }
 
-input UpdatePlaneInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+input UpdateTicketInput {
+  price: Int
+  planeId: Int
+  userId: Int
   id: Int!
 }
 
 input CreateTicketInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateTicketInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  price: Int!
+  planeId: Int!
+  userId: Int!
 }

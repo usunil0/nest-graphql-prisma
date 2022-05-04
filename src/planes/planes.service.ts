@@ -31,7 +31,7 @@ export class PlanesService {
     });
   }
 
-  async createPlane(data: Prisma.PlaneCreateInput): Promise<Plane> {
+  async createPlane(data: Prisma.PlaneUncheckedCreateInput): Promise<Plane> {
     return this.prisma.plane.create({
       data,
     });

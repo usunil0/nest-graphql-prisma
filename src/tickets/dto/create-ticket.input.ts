@@ -1,5 +1,4 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
 
 @InputType()
 export class CreateTicketInput {
@@ -7,8 +6,8 @@ export class CreateTicketInput {
   price: number;
 
   @Field(() => Int)
-  plane: Prisma.PlaneTicketCreateInput['plane'];
+  planeId: number;
 
   @Field(() => Int)
-  user: Prisma.PlaneTicketCreateInput['user'];
+  userId: number;
 }

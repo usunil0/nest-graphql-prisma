@@ -31,8 +31,8 @@ model Plane {
   arrivalAirportId Int
   departureAirport Airport  @relation(name: "departureAirport",fields: [departureAirportId], references: [id])
   departureAirportId Int
-  arrivalTime DateTime
-  departureTime DateTime
+  arrivalTime Int
+  departureTime Int
   tickets PlaneTicket[] @relation(name:"ticketPlane")
 }
 

@@ -5,26 +5,26 @@ import { CreateTicketInput } from './dto/create-ticket.input';
 import { UpdateTicketInput } from './dto/update-ticket.input';
 
 @Resolver(() => Ticket)
-export class PlanesResolver {
+export class PlaneTicketsResolver {
   constructor(private readonly planeTicketService: PlaneTicketService) {}
 
   @Mutation(() => Ticket)
-  createTicket(@Args('createPlaneInput') createPlaneInput: CreateTicketInput) {
+  createTicket(@Args('createTicketInput') createPlaneInput: CreateTicketInput) {
     return this.planeTicketService.createPlaneTicket(createPlaneInput);
   }
 
-  @Query(() => [Ticket], { name: 'planes' })
+  @Query(() => [Ticket], { name: 'tickets' })
   planeTickets() {
     return this.planeTicketService.planeTickets({});
   }
 
-  @Query(() => Ticket, { name: 'plane' })
+  @Query(() => Ticket, { name: 'ticket' })
   plane(@Args('id', { type: () => Int }) id: number) {
     return this.planeTicketService.planeTicket({ id });
   }
 
   @Mutation(() => Ticket)
-  updatePlane(@Args('updatePlaneInput') updatePlaneInput: UpdateTicketInput) {
+  updatePlane(@Args('updateTicketInput') updatePlaneInput: UpdateTicketInput) {
     return this.planeTicketService.updatePlaneTicket({
       where: { id: updatePlaneInput.id },
       data: updatePlaneInput,

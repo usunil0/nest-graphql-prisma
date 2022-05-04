@@ -1,5 +1,4 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
 
 @InputType()
 export class CreatePlaneInput {
@@ -7,14 +6,14 @@ export class CreatePlaneInput {
   name: string;
 
   @Field(() => Int)
-  arrivalAirport: Prisma.PlaneCreateInput['arrivalAirport'];
+  arrivalAirportId: number;
 
   @Field(() => Int)
-  departureAirport: Prisma.PlaneCreateInput['departureAirport'];
+  departureAirportId: number;
 
-  @Field(() => Date)
-  arrivalTime: Date;
+  @Field(() => Int)
+  arrivalTime: number;
 
-  @Field(() => Date)
-  departureTime: Date;
+  @Field(() => Int)
+  departureTime: number;
 }

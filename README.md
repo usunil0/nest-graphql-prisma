@@ -81,4 +81,53 @@ mutation CreateAirport($name:String!){
 
 Planes
 
+```
+query Planes{
+  planes{
+    id
+    arrivalAirport{
+      name
+    }
+    departureAirport{
+      name
+    }
+    arrivalTime
+    departureTime
+  }
+}
+```
+
+```
+mutation CreatePlane(
+  $name: String!
+  $arrivalAirportId: Int!
+  $departureAirportId: Int!
+  $arrivalTime: Int!
+  $departureTime: Int!
+) {
+  createPlane(
+    createPlaneInput: {
+      name: $name
+      arrivalAirportId: $arrivalAirportId
+      departureAirportId: $departureAirportId
+      arrivalTime: $arrivalTime
+      departureTime: $departureTime
+    }
+  ) {
+    id
+  }
+}
+```
+
 Tickets
+
+```
+query Tickets{
+  tickets{
+    id
+    price
+    planeId
+    userId
+  }
+}
+```

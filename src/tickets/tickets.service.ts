@@ -32,7 +32,7 @@ export class PlaneTicketService {
   }
 
   async createPlaneTicket(
-    data: Prisma.PlaneTicketCreateInput,
+    data: Prisma.PlaneTicketUncheckedCreateInput,
   ): Promise<PlaneTicket> {
     return this.prisma.planeTicket.create({
       data,

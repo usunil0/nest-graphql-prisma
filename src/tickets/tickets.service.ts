@@ -6,7 +6,7 @@ import { PlaneTicket, Prisma } from '@prisma/client';
 export class PlaneTicketService {
   constructor(private prisma: PrismaService) {}
 
-  async plane(
+  async planeTicket(
     planeWhereUniqueInput: Prisma.PlaneWhereUniqueInput,
   ): Promise<PlaneTicket | null> {
     return this.prisma.planeTicket.findUnique({
@@ -14,7 +14,7 @@ export class PlaneTicketService {
     });
   }
 
-  async planes(params: {
+  async planeTickets(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.PlaneWhereUniqueInput;
@@ -31,13 +31,15 @@ export class PlaneTicketService {
     });
   }
 
-  async createPlane(data: Prisma.PlaneTicketCreateInput): Promise<PlaneTicket> {
+  async createPlaneTicket(
+    data: Prisma.PlaneTicketCreateInput,
+  ): Promise<PlaneTicket> {
     return this.prisma.planeTicket.create({
       data,
     });
   }
 
-  async updatePlane(params: {
+  async updatePlaneTicket(params: {
     where: Prisma.PlaneTicketWhereUniqueInput;
     data: Prisma.PlaneTicketUpdateInput;
   }): Promise<PlaneTicket> {
@@ -48,7 +50,7 @@ export class PlaneTicketService {
     });
   }
 
-  async deletePlane(
+  async deletePlaneTicket(
     where: Prisma.AirportWhereUniqueInput,
   ): Promise<PlaneTicket> {
     return this.prisma.planeTicket.delete({

@@ -1,35 +1,38 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { TicketsService } from './tickets.service';
+import { PlaneTicketService } from './tickets.service';
 import { Ticket } from './entities/ticket.entity';
 import { CreateTicketInput } from './dto/create-ticket.input';
 import { UpdateTicketInput } from './dto/update-ticket.input';
 
 @Resolver(() => Ticket)
-export class TicketsResolver {
-  constructor(private readonly ticketsService: TicketsService) {}
+export class PlanesResolver {
+  constructor(private readonly planeTicketService: PlaneTicketService) {}
 
   @Mutation(() => Ticket)
-  createTicket(@Args('createTicketInput') createTicketInput: CreateTicketInput) {
-    return this.ticketsService.create(createTicketInput);
+  createTicket(@Args('createPlaneInput') createPlaneInput: CreateTicketInput) {
+    return this.planeTicketService.createPlaneTicket(createPlaneInput);
   }
 
-  @Query(() => [Ticket], { name: 'tickets' })
-  findAll() {
-    return this.ticketsService.findAll();
+  @Query(() => [Ticket], { name: 'planes' })
+  planeTickets() {
+    return this.planeTicketService.planeTickets({});
   }
 
-  @Query(() => Ticket, { name: 'ticket' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.ticketsService.findOne(id);
-  }
-
-  @Mutation(() => Ticket)
-  updateTicket(@Args('updateTicketInput') updateTicketInput: UpdateTicketInput) {
-    return this.ticketsService.update(updateTicketInput.id, updateTicketInput);
+  @Query(() => Ticket, { name: 'plane' })
+  plane(@Args('id', { type: () => Int }) id: number) {
+    return this.planeTicketService.planeTicket({ id });
   }
 
   @Mutation(() => Ticket)
-  removeTicket(@Args('id', { type: () => Int }) id: number) {
-    return this.ticketsService.remove(id);
+  updatePlane(@Args('updatePlaneInput') updatePlaneInput: UpdateTicketInput) {
+    return this.planeTicketService.updatePlaneTicket({
+      where: { id: updatePlaneInput.id },
+      data: updatePlaneInput,
+    });
+  }
+
+  @Mutation(() => Ticket)
+  deletePlane(@Args('id', { type: () => Int }) id: number) {
+    return this.planeTicketService.deletePlaneTicket({ id });
   }
 }

@@ -10,26 +10,29 @@ export class PlanesResolver {
 
   @Mutation(() => Plane)
   createPlane(@Args('createPlaneInput') createPlaneInput: CreatePlaneInput) {
-    return this.planesService.create(createPlaneInput);
+    return this.planesService.createPlane(createPlaneInput);
   }
 
   @Query(() => [Plane], { name: 'planes' })
-  findAll() {
-    return this.planesService.findAll();
+  planes() {
+    return this.planesService.planes({});
   }
 
   @Query(() => Plane, { name: 'plane' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.planesService.findOne(id);
+  plane(@Args('id', { type: () => Int }) id: number) {
+    return this.planesService.plane({ id });
   }
 
   @Mutation(() => Plane)
   updatePlane(@Args('updatePlaneInput') updatePlaneInput: UpdatePlaneInput) {
-    return this.planesService.update(updatePlaneInput.id, updatePlaneInput);
+    return this.planesService.updatePlane({
+      where: { id: updatePlaneInput.id },
+      data: updatePlaneInput,
+    });
   }
 
   @Mutation(() => Plane)
-  removePlane(@Args('id', { type: () => Int }) id: number) {
-    return this.planesService.remove(id);
+  deletePlane(@Args('id', { type: () => Int }) id: number) {
+    return this.planesService.deletePlane({ id });
   }
 }
